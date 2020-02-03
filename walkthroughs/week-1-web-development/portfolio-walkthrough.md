@@ -22,8 +22,9 @@ files under that directory.
         filePath="software-product-sprint/portfolio/pom.xml">
       pom.xml
     </walkthrough-editor-open-file>
-    is a Maven configuration file. This file sets up the libraries the project
-    uses.
+    is a configuration file for the [Maven](https://maven.apache.org/) build tool. 
+    This file sets up the libraries the project uses and all the steps required to
+    build the application.
 -   <walkthrough-editor-open-file
         filePath="software-product-sprint/portfolio/src/main/webapp/index.html">
       index.html
