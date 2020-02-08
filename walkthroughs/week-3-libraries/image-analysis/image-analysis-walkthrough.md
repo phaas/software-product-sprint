@@ -7,7 +7,7 @@ This walkthrough introduces Cloud Vision, which lets you analyze images.
 You can return to this walkthrough anytime by running this command:
 
 ```bash
-teachme image-analysis-walkthrough.md
+teachme ~/software-product-sprint/walkthroughs/week-3-libraries/image-analysis/image-analysis-walkthrough.md
 ```
 
 Click the **Start** button to begin!
@@ -44,17 +44,17 @@ the pre-trained models.
 
 Before you can use the Cloud Vision API, you have to enable it. Go here:
 
-https://console.cloud.google.com/flows/enableapi?apiid=vision.googleapis.com
+<https://console.cloud.google.com/flows/enableapi?apiid=vision.googleapis.com>
 
 Make sure your project is selected, and click the `Enable` button.
 
 ## Credentials
 
 The Cloud Vision API requires your Cloud project's credentials to work. When you
-deploy to App Engine this will work ~~magically~~ automatically, but when
-deploying to a dev server you have to set your credentials manually. Follow the
-steps [here](https://cloud.google.com/docs/authentication/getting-started) to
-set up your local credentials.
+deploy to App Engine this will work automatically, but when deploying to a dev
+server you have to set your credentials manually. Follow the steps
+[here](https://cloud.google.com/docs/authentication/getting-started) to set up
+your local credentials.
 
 **Important:** Before proceeding, make sure you have your
 `GOOGLE_APPLICATION_CREDENTIALS` environment variable set. Nothing will work
@@ -74,19 +74,34 @@ library to your classpath, add this Maven dependency:
 </dependency>
 ```
 
-Add this dependency to the `pom.xml` file in your portfolio directory.
+Add this dependency to the
+<walkthrough-editor-open-file
+    filePath="software-product-sprint/portfolio/pom.xml">
+  pom.xml
+</walkthrough-editor-open-file>
+file in your portfolio directory.
 
 ## Example
 
 The `image-analyzer` directory contains an example project that generates labels
 for an image uploaded by a user.
 
-The `index.jsp` file gets the Blobstore upload URL and uses it as the form's
-`action` attribute. This allows a user to upload an image, which gets stored in
+The
+<walkthrough-editor-open-file
+    filePath="software-product-sprint/walkthroughs/week-3-libraries/image-analysis/examples/image-analyzer/src/main/webapp/index.jsp">
+  index.jsp
+</walkthrough-editor-open-file>
+file gets the Blobstore upload URL and uses it as the form's `action`
+attribute. This allows a user to upload an image, which gets stored in
 Blobstore, and then the request is forwarded to the `/image-analysis` URL. This
 URL maps to the `ImageAnalysisServlet` class.
 
-The core of the logic in `ImageAnalysisServlet` is this code:
+The core of the logic in
+<walkthrough-editor-open-file
+    filePath="software-product-sprint/walkthroughs/week-3-libraries/image-analysis/examples/image-analyzer/src/main/java/com/google/sps/servlets/ImageAnalysisServlet.java">
+  ImageAnalysisServlet.java
+</walkthrough-editor-open-file>
+is this code:
 
 ```java
 // Get the BlobKey that points to the image uploaded by the user.
@@ -134,7 +149,12 @@ continuing.
 Try to break this goal down into smaller steps, and then take each step on
 individually.
 
--   Add the Cloud Vision dependency to your `pom.xml` file.
+-   Add the Cloud Vision dependency to your
+    <walkthrough-editor-open-file
+        filePath="software-product-sprint/portfolio/pom.xml">
+      pom.xml
+    </walkthrough-editor-open-file>
+    file.
 -   Modify your servlet that handles file upload requests to also fetch labels
     for the uploaded image.
     -   Test that this works by printing the labels to the console.
@@ -156,8 +176,13 @@ analysis feature!
 When you're happy with your feature and you're ready to show it to the world,
 you can deploy it to your live server!
 
-Your `appengine-web.xml` file should already contain your project ID. If so, you
-can deploy to your live server by executing this command:
+Your
+<walkthrough-editor-open-file
+    filePath="software-product-sprint/portfolio/src/main/webapp/WEB-INF/appengine-web.xml">
+  appengine-web.xml
+</walkthrough-editor-open-file>
+file should already contain your project ID. If so, you can deploy to your live
+server by executing this command:
 
 ```bash
 mvn appengine:update
